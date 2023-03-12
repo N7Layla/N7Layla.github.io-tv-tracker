@@ -1,0 +1,76 @@
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <head>
+        <title>i watch too much tv.</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Neucha&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="style.css">
+ <script
+        src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>TV Tracker</h1>
+            <span class="option-buttons">
+            <button id="button">ADD SHOWS</button>
+            <button type="submit" id="savebtn">SAVE ALL</button>
+            <!-- <button onclick="toggleOptions()">Options</button>
+            <span id="options-menu" class="hide">
+            <button onclick="toggleButtons()">Manual Move Controls</button>
+            <button onclick="textMode()">Text Version</button> -->
+        </span>
+        </span>
+        </header>
+
+        <main>   
+            <div id="overlay"></div>
+            <div id="popup">
+                <div class="popupcontrols">
+                    <span id="popupclose">X</span>
+                </div>
+                <div class="popupcontent">
+                    <form method="POST" id="login_form">
+                        <label>Search:</label>
+                        <input type="text" name="username" id="username"/>
+                        <button type="submit" value="Submit" name="submit" class="submit" id="submit">Submit</button>
+                    </form>
+                    <div id="results"></div>
+                </div>
+            </div>
+            <div class="top-section">      
+            <section id="faves">
+                <h2>Favorites</h2>
+                <div class="flex"
+                ondrop="drop_handler(event)"
+                ondragover="dragover_handler(event)">
+                <div class="poster">hi</div>
+            </div>
+            </section>
+            <section id="current">
+                <h2>Currently Airing</h2>
+                <div class="flex"
+                ondrop="drop_handler(event)"
+                ondragover="dragover_handler(event)">
+            </div>
+            </section>
+        </div>  
+            <section id="all">
+                <h2>History</h2>
+                <div class="flex"
+                ondrop="drop_handler(event)"
+                ondragover="dragover_handler(event)">
+            </div>
+            </section>
+
+            <section id="text-faves" class="hide">
+                <ul>
+                </ul>
+            </section>
+        </main>
+    </body>
+    <footer>coded with 💖 by <a href="https://laylawrote.com/">layla</a>.</footer>
+</html>
