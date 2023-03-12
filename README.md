@@ -8,3 +8,5 @@ A simple drag-n-drop webapp made to keep track of my personal tv viewing, using 
  - mobile version
  - text list mode
  - list sorting
+
+ ### try it live [here](https://laylawrote.com/tv-tracker/tv.html)!
