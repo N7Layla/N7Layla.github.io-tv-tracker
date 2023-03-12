@@ -8,20 +8,16 @@ $(function() {
 
     var mode = "img";
    
-    var searchItem = {};
-    var searchList = [];
-
-	// Initialize Variables
 	var closePopup = document.getElementById("popupclose");
 	var overlay = document.getElementById("overlay");
 	var popup = document.getElementById("popup");
 	var button = document.getElementById("button");
-	// Close Popup Event
+
 	closePopup.onclick = function() {
 	  overlay.style.display = 'none';
 	  popup.style.display = 'none';
 	};
-	// Show Overlay and Popup
+
 	button.onclick = function() {
 	  overlay.style.display = 'block';
 	  popup.style.display = 'block';
@@ -38,17 +34,12 @@ $(function() {
         this.addEventListener("ondragover", dragover_handler);
     })
 
-    // $('.flex').each(() => {
-    //     console.log("?hello?")
-    //     this.removeEventListener("ondrop", drop_handler);
-    //     this.removeEventListener("ondragover", dragover_handler);
-    // })
 
-    $('#login_form').on('submit', function(e) { 
+    $('#search_form').on('submit', function(e) { 
         e.preventDefault();  
         var results = document.getElementById("results");
         results.replaceChildren();
-        var data = $("#login_form :input").val();
+        var data = $("#search_form :input").val();
         
 
         ajaxCall(data);
@@ -62,32 +53,24 @@ $(function() {
   
                 success: function (data) {
                     var x = JSON.stringify(data);
-                    //console.log("??", x);
     
                     data.forEach(element => {
 
-                        //console.log("hey", element["show"]["id"])
                         var resultListing = document.createElement("button");
                         resultListing.className = "result-item";
                         resultListing.innerHTML = element["show"]["name"] + " " + element["show"]["premiered"];
-                        //var id = resultListing.createAttribute("id");
                         resultListing.setAttribute("id", element["show"]["id"]);
-                        //id.value = element["show"]["id"]
-                        //resultListing.id = element["show"]["id"];
-                        //resultListing.setAttribute("title", element["show"]["name"] + " " + element["show"]["premiered"])
 
-                        searchList.push({
-                            "name": element["show"]["name"],
-                            "id": element["show"]["id"]
-                        })
+                        // searchList.push({
+                        //     "name": element["show"]["name"],
+                        //     "id": element["show"]["id"]
+                        // })
                         resultListing.value = element["show"]["image"] != null ? element["show"]["image"]["medium"] : "";    
 
-                        //resultListing.value = element;
                         $('#results').append(resultListing);
                         
                     });
 
-                    //document.getElementById("results").firstChild.focus();
                    
                 },
   
@@ -104,17 +87,13 @@ $(function() {
             poster.className = "poster";   
             var id = $(this).attr('id');
             var posterUrl = $(this).attr('value');
-            //poster.ariaLabel = $(this).innerText;   
-            //poster.id = $(this).innerText.replace(/\s+/g, '-').toLowerCase();
-            //var url = $(this).val()["show"]["image"] != null ? $(this).val()["show"]["image"]["medium"] : ""; 
+
             var showTitle = document.getElementById(id).innerText;
-            //console.log("heeeey", document.getElementById(id).innerText)
             poster.style.backgroundImage = "url('" + posterUrl  + "')"; 
             poster.style.backgroundSize = "cover";
             poster.setAttribute('title', showTitle);
             poster.setAttribute('draggable', true);
             poster.id = "poster-" + id;
-            //poster.draggable = true;
             
             
             var trash = document.createElement("img");
@@ -184,10 +163,7 @@ $("#savebtn").on("click", () => {
 });
 
 function dragstart_handler(ev) {
-    // Add the target element's id to the data transfer object
-    //ev.target.id = "currently-dragging";
-    //console.log("??", ev.target);
-    ev.dataTransfer.setData("text/html", ev.target.id); //("application/my-app", ev.target.id);
+    ev.dataTransfer.setData("text/html", ev.target.id); 
     ev.dataTransfer.effectAllowed = "move";
   }
   function dragover_handler(ev) {
@@ -196,40 +172,14 @@ function dragstart_handler(ev) {
   }
   function drop_handler(ev) {
     ev.preventDefault();
-    // Get the id of the target and add the moved element to the target's DOM
     const data = ev.dataTransfer.getData("text/html");
-    //console.log("hi", data)
-    //console.log("target", ev.target)
     var moving = document.getElementById(data);
-    //ev.currentTarget.prepend(document.getElementById(data));
-    //var before = moving.previousElementSibling;
     ev.currentTarget.insertBefore(moving, ev.target);
-    //ev.target.appendChild(data);
   }
 
-//   function addDraggable() {
-//     var elements = document.getElementsByClassName("poster");
-//     for (var i = 0; i < elements.length; i++) {
-//         elements[i].draggable = true;
-//         elements[i].id = "poster-" + i;
-//         //console.log("poster-" + i);
-//         //elements[i].addEventListener("dragstart", dragstart_handler);
-//     }
-//   }
-
-// function addIds() {
-//     var elements = document.getElementsByClassName("poster");
-//     for (var i = 0; i < elements.length; i++) {
-//         //elements[i].draggable = true;
-//         //elements[i].id = "poster-" + i;
-//         elements[i].addEventListener("dragstart", dragstart_handler);
-
-//     }
-// }
 
 function toggleOptions() {
     var menu = document.getElementById("options-menu");
-    //console.log("??", menu)
     menu.classList.toggle("hide");
 }
 
